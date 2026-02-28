@@ -1,0 +1,16 @@
+body {
+    width: 60%;
+    margin: 10px auto;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', Arial, sans-serif;
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rivals {
+    font-size: 1.5rem;
+}
