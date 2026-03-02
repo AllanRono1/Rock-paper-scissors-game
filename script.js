@@ -5,7 +5,11 @@ const playerEl = document.getElementById("playerscore-el");
 const buttonEl = document.getElementById("button-el")
 const resultsEl = document.getElementById("results-el")
 const localStorageItem = localStorage.getItem("myLeads")
-console.log(localStorageItem)
+const compResultsEl = document.getElementById("comp-results-el")
+
+const compPicks = generateRandomPick()
+console.log(compPicks)
+
 let message = ""
 let playerScore = 0
 let computerScore = 0
@@ -18,14 +22,20 @@ buttonEl.addEventListener("click", function() {
     myLeads.push(playerEl.value)
     playerEl.value = ""
     localStorage.setItem("myLeads", JSON.stringify(myLeads))
-    renderLeads()
+    render(myLeads, resultsEl)
+    render(compPicks, compResultsEl)
 })
 
 
-function renderLeads() {
+function render(leads, results) {
     let display = ""
-    for(let i = 0; i < myLeads.length; i++) {
-        display +=  `<li>${myLeads[i]}</li>`
+    for(let i = 0; i < leads.length; i++) {
+        display +=  `<li>${leads[i]}</li>`
     }
-    resultsEl.innerHTML = display;
+    results.innerHTML = display;
+}
+
+function generateRandomPick() {
+    const randomPick = Math.floor(Math.random() * handOptions.length)
+    return handOptions[randomPick]
 }
