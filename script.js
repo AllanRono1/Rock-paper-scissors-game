@@ -20,11 +20,13 @@ let item3 = "paper"
 
 buttonEl.addEventListener("click", function() {
     myLeads.push(playerEl.value)
+    const playerInput = playerEl.value
     playerEl.value = ""
 
     localStorage.setItem("myLeads", JSON.stringify(myLeads))
 
     const compPicks = generateRandomPick()
+    // gameRules()
     compLeads.push(compPicks)
     localStorage.setItem("compLeads", JSON.stringify(compLeads))
     
@@ -35,6 +37,19 @@ buttonEl.addEventListener("click", function() {
     if(storedComp) {
     render(compLeads, compResultsEl)
     }
+
+    // gameRules()
+
+    
+    if(playerInput === "rock" && compPicks === "scissors" || playerInput === "scissors" && compPicks === "rock") {
+            console.log("rock wins")
+        } else if(playerInput === "rock" && compPicks === "paper" || playerInput === "paper" && compPicks === "rock") {
+            console.log("paper wins!")
+        } else if(playerInput === "scissors" && compPicks === "paper" || playerInput === "paper" && compPicks === "scissors") {
+            console.log("scissors win")
+        } else {
+            console.log("stalemate, mate!")
+        }
     })
 
 
