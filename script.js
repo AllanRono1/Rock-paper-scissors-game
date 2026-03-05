@@ -87,7 +87,13 @@ buttonEl.addEventListener("click", function() {
         computerScore += 1
         computerPoints.textContent = computerScore
     }
-    
+
+    if(playerScore === 3) {
+        console.log("The best! around!!! Whoop whoop lets freaking go")
+    } else if(compPicks === 3) {
+        console.log("whoopsie, Trinket cooked your ass")
+    } 
+
     })
 function render(leads, results) {
     let display = ""
