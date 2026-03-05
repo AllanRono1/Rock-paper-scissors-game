@@ -9,7 +9,10 @@ const compResultsEl = document.getElementById("comp-results-el")
 const storedPlayer = JSON.parse(localStorage.getItem("myLeads"))
 const storedComp = JSON.parse(localStorage.getItem("compLeads"))
 const winnerEl = document.getElementById("winner-el")
-
+const playerPoints = document.getElementById("playerpoints-el")
+const computerPoints = document.getElementById("computerpoints-el")
+console.log(playerPoints)
+console.log(computerPoints)
 
 let message = ""
 let playerScore = 0
@@ -28,7 +31,7 @@ buttonEl.addEventListener("click", function() {
 
     localStorage.setItem("myLeads", JSON.stringify(myLeads))
 
-    const compPicks = "rock"
+    const compPicks = generateRandomPick()
     // gameRules()
     compLeads.push(compPicks)
     localStorage.setItem("compLeads", JSON.stringify(compLeads))
@@ -61,9 +64,31 @@ buttonEl.addEventListener("click", function() {
             winnerEl.textContent = message
         }
 
+    if(playerInput === "rock" && compPicks === "scissors") {
+        playerScore += 1
+        playerPoints.textContent = playerScore
+    } else if(playerInput === "scissors" && compPicks === "rock") {
+        computerScore += 1
+        computerPoints.textContent = computerScore
+    }
+
+    if(playerInput === "paper" && compPicks === "rock") {
+        playerScore += 1
+        playerPoints.textContent = playerScore
+    } else if(playerInput === "rock" && compPicks === "paper") {
+        computerScore += 1
+        computerPoints.textContent = computerScore
+    }
+    
+    if(playerInput === "scissors" && compPicks === "paper" ) {
+        playerScore += 1
+        playerPoints.textContent = playerScore
+    } else if(playerInput === "paper" && compPicks === "scissors") {
+        computerScore += 1
+        computerPoints.textContent = computerScore
+    }
+    
     })
-
-
 function render(leads, results) {
     let display = ""
     for(let i = 0; i < leads.length; i++) {
